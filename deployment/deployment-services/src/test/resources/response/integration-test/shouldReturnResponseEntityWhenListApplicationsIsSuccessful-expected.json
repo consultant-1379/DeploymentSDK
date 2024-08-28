@@ -1,0 +1,7 @@
+{
+	"data": [{
+		"application-name": "aia-flink-streaming-app",
+		"application-version": "1.0.0",
+		"application-description": "Flink Streaming application ."
+	}]
+}

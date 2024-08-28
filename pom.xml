@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>com.ericsson.aia</groupId>
+		<artifactId>integration</artifactId>
+		<version>1.0.37</version>
+	</parent>
+
+	<groupId>com.ericsson.component.aia.sdk</groupId>
+	<artifactId>deploymentmanager</artifactId>
+	<version>1.0.4-SNAPSHOT</version>
+	<name>deploymentmanager</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<git.repository>AIA/com.ericsson.component.aia.sdk/DeploymentSDK</git.repository>
+	</properties>
+
+
+	<dependencies>
+	</dependencies>
+
+	<scm>
+		<developerConnection>${ericsson.scm.url}</developerConnection>
+		<connection>${ericsson.scm.url}</connection>
+		<tag>HEAD</tag>
+		<url>${ericsson.scm.url}</url>
+	</scm>
+	<organization>
+		<name>Ericsson Telecommunications equipment company</name>
+		<url>https://www.ericsson.com/</url>
+	</organization>
+	<issueManagement>
+		<system>JIRA</system>
+		<url>https://jira-nam.lmera.ericsson.se/browse/OSSBSS-1570</url>
+	</issueManagement>
+	<mailingLists>
+		<mailingList>
+			<name>AIA Team</name>
+			<post>AIA@ericsson.com</post>
+		</mailingList>
+	</mailingLists>
+
+	<modules>
+		<module>deployment</module>
+		<module>docker-images</module>
+	</modules>
+</project>
+

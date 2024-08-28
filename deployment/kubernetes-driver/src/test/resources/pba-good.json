@@ -1,0 +1,209 @@
+{
+  "pba": {
+    "name": "Test-PBA",
+    "version": "1.0.1",
+    "description": "applicationDescription",
+    "icon": "applicationLogo",
+    "author-info": {
+      "author": "authorName",
+      "email": "email",
+      "publishing-date": "yyyy/mm/dd hh:mm:ss z",
+      "location": "Athlone"
+    },
+    "template-info": {
+      "template-name": "Apache Spark SQL template",
+      "template-version": "1.0.1",
+      "template-description": "test-template"
+    },
+    "scm-info": {
+      "scm": "git://ip",
+      "scm-tag": "tagName"
+    },
+    "extension-points": [
+      {
+        "name": "kafka-input",
+        "uri": "kafka://topic_name?format=avro&partionBy=ATR1#ATR2#ATR3",
+        "attributes": {
+          "metadata.broker.list": [
+            "localhost",
+            "live.ericsson.se"
+          ],
+          "group.id": "live.ericsson.se",
+          "data.format": "json"
+        }
+      },
+      {
+        "name": "hdfs-input",
+        "uri": "hdfs://usr/input?format=parquet",
+        "attributes": {}
+      },
+      {
+        "name": "jdbc-input",
+        "uri": "JDBC://jdbc:postgresql://127.0.0.1:5432/aiademo",
+        "attributes": {
+          "password": "passwd",
+          "user": "user-name",
+          "driver": "{driver-class}",
+          "table-name": "table-name"
+        }
+      },
+      {
+        "name": "hive-input",
+        "uri": "hive://TABLE-NAME",
+        "attributes": {
+        }
+      },
+      {
+        "name": "alluxio-input",
+        "uri": "alluxio://usr/input?format=parquet",
+        "attributes": {}
+      },
+      {
+        "name": "file-input",
+        "uri": "file://{path}?format=csv",
+        "attributes": {}
+      }
+    ],
+    "integration-points": [
+      {
+        "name": "kafka-output",
+        "uri": "kafka://topic_name?format=avro&partionBy=ATR1#ATR2#ATR3",
+        "attributes": {
+          "metadata.broker.list": [
+            "localhost",
+            "live.ericsson.se"
+          ],
+          "group.id": "live.ericsson.se"
+        },
+        "data": {
+          "schema": [
+            "EventTypeSchema"
+          ]
+        }
+      },
+      {
+        "name": "hdfs-output",
+        "uri": "hdfs://usr/input?format=parquet",
+        "attributes": {},
+        "data": {
+          "schema": [
+            "EventTypeSchema"
+          ]
+        }
+      },
+      {
+        "name": "jdbc-output",
+        "uri": "JDBC://jdbc:postgresql://127.0.0.1:5432/aiademo&partionBy=xyz#rtr#fty",
+        "attributes": {
+          "password": "passwd",
+          "user": "user-name",
+          "driver": "{driver-class}",
+          "table-name": "table-name"
+        },
+        "data": {
+          "schema": [
+            "EventTypeSchema"
+          ]
+        }
+      },
+      {
+        "name": "hive-output",
+        "uri": "hive://TABLE-NAME?format=parquet&partionBy=xyz#rtr#fty",
+        "attributes": {
+          "table-name": "table-name"
+        },
+        "data": {
+          "schema": [
+            "EventTypeSchema"
+          ]
+        }
+      },
+      {
+        "name": "alluxio-output",
+        "uri": "alluxio://usr/input?format=parquet",
+        "attributes": {},
+        "data": {
+          "schema": [
+            "EventTypeSchema"
+          ]
+        }
+      },
+      {
+        "name": "file-output",
+        "uri": "file://{path}?format=csv",
+        "attributes": {},
+        "data": {
+          "schema": [
+            "EventTypeSchema"
+          ]
+        }
+      }
+    ],
+    "build-info": {
+      "container": {
+        "docker": {
+          "name": "blwarning-volvo",
+          "image": "armdocker.rnd.ericsson.se/aia/aia-blocked-events-processor:1.0.0",
+          "network": "HOST",
+          "mountPaths": [
+            "/var/tmp/"
+          ],
+          "forcePullImage": true,
+          "privileged": true
+        }
+      },
+      "dependencies": {
+        "applications": [
+          {
+            "application-name": "app-name-1",
+            "application-version": "1.0.1",
+            "application-description": "test1"
+          },
+          {
+            "application-name": "app-name-2",
+            "application-version": "1.0.1",
+            "application-description": "test2"
+          }
+        ]
+      }
+    },
+    "deployment-info": {
+      "maturity": "level 0 to 4",
+      "staging-status": true,
+      "in-production": true,
+      "deployment-scope": "private|public",
+      "no-of-instances": "5",
+      "no-of-cpu-per-instance": "5",
+      "memory-size": "1GB",
+      "env-args": [
+        {
+          "name": "mainClass",
+          "value": "com.ericsson.component.aia.services.bps.engine.service.BPSPipeLineExecuter"
+        },
+        {
+          "name": "masterUrl",
+          "value": "159.107.161.191:6123"
+        },
+        {
+          "name": "flowPath",
+          "value": "/var/tmp/flow-be.xml"
+        },
+        {
+          "name": "jobArguments",
+          "value": ""
+        }
+      ],
+      "app-args": [
+        {
+          "name": "masterUrl",
+          "value": ""
+        },
+        {
+          "name": "arg2",
+          "value": "value2"
+        }
+      ],
+      "attributes": {}
+    }
+  }
+}

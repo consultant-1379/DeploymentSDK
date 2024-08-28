@@ -1,0 +1,178 @@
+{
+  "pba": {
+    "authorInfo": {
+      "author": "echchik",
+      "email": "chetan.chikmandya.puttegowda@ericsson.com",
+      "publishingDate": "08/03/2017 16:32:00",
+      "location": "Athlone"
+    },
+    "templateInfo": {
+      "id": "a80a056c-e097-4645-b3e5-806562a67b03",
+      "name": "aia-spark-ml-batch",
+      "title": "TEST Apache Spark SQL Processing",
+      "version": "1.0.6",
+      "description": "Test description."
+    },
+    "applicationInfo": {
+      "id": "110c41fc-6b5b-477e-bc2f-60283213ed01",
+      "name": "aia-spark-ml-batch",
+      "title": "My TEST new Apache Spark application SQL Processing",
+      "version": "1.0.0",
+      "description": "Test application description."
+    },
+    "icon": "<icon path>",
+    "scmInfo": {
+      "scm": "ssh://gerrit.ericsson.se:29418/AIA/com.ericsson.component.aia.sdk.templates/aia-spark-batch",
+      "scmTag": "HEAD"
+    },
+    "extensionPoints": [
+      {
+        "technology": "file",
+        "name": "my-application-file-input",
+        "uri": {
+          "protocol": "file://",
+          "address": "application/output",
+          "args": [
+            {
+              "key": "format",
+              "value": "csv",
+              "isReadOnly": false
+            },
+            {
+              "key": "schema",
+              "value": "DataSchema",
+              "isReadOnly": false
+            }
+          ]
+        },
+        "attributes": [
+          {
+            "key": "header",
+            "value": "true",
+            "isReadOnly": false
+          },
+          {
+            "key": "skip-comments",
+            "value": "true",
+            "isReadOnly": false
+          },
+          {
+            "key": "table-name",
+            "value": "Table name to load file contents",
+            "isReadOnly": false
+          }
+        ]
+      }
+    ],
+    "integrationPoints": [
+      {
+        "technology": "hdfs",
+        "name": "my-application-hdfs-output",
+        "uri": {
+          "protocol": "hdfs://",
+          "address": "172.17.0.7",
+          "args": [
+            {
+              "key": "format",
+              "value": "csv",
+              "isReadOnly": false
+            },
+            {
+              "key": "schema",
+              "value": "schema",
+              "isReadOnly": false
+            }
+          ]
+        },
+        "attributes": [
+          {
+            "key": "data.save.mode",
+            "value": "Append",
+            "isReadOnly": false
+          }
+        ]
+      }
+    ],
+    "buildInfo": {
+      "container": {
+        "docker": {
+          "name": "aia-flink-streaming-app",
+          "repoBaseUrl": "https://arm.epk.ericsson.se/artifactory",
+          "repoPath": "docker-v2-global-local",
+          "imagePath": "aia/test/test-application-4/latest/",
+          "network": "HOST",
+          "portList": [
+            "80",
+            "443"
+          ],
+          "forcePullImage": true,
+          "privileged": true
+        }
+      },
+      "dependencies": {
+        "applications": []
+      }
+    },
+    "deploymentInfo": {
+      "maturity": 0,
+      "stagingStatus": true,
+      "inProduction": true,
+      "deploymentScope": "public",
+      "noOfInstances": "1",
+      "noOfCpuPerInstance": "1",
+      "memorySize": "<In GB>",
+      "svcname": "myTestService",
+      "servicePorts": [
+        {
+          "srcPort": 80,
+          "targetPort": 80,
+          "protocol": "TCP"
+        },
+        {
+          "srcPort": 443,
+          "targetPort": 443,
+          "protocol": "TCP"
+        },
+        {
+          "srcPort": 8080,
+          "targetPort": 18080,
+          "protocol": "TCP"
+        }
+      ],
+      "envArgs": [],
+      "appArgs": [
+        {
+          "key": "mainClass",
+          "value": "<main-class of Spark app>",
+          "isReadOnly": false
+        },
+        {
+          "key": "deployMode",
+          "value": "client",
+          "isReadOnly": false
+        },
+        {
+          "key": "masterUrl",
+          "value": "<sparkmaster-ip:port>",
+          "isReadOnly": false
+        },
+        {
+          "key": "bpsJar",
+          "value": "hdfs://<path on hdfs>",
+          "isReadOnly": false
+        },
+        {
+          "key": "flowPath",
+          "value": "hdfs://<path on hdfs>",
+          "isReadOnly": false
+        },
+        {
+          "key": "jobArguments",
+          "value": "<other arguments>",
+          "isReadOnly": false
+        }
+      ],
+      "attributes": []
+    }
+  }
+}
